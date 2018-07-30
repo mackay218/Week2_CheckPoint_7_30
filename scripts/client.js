@@ -13,16 +13,26 @@ function readyNow(){
 //variable to hold counter
 let counter = 0;
 
+//array to hold div Id's
+let divIdArr = [];
+
 //function to create div and append do DOM
 function appendDiv(){
     console.log('in appendDiv');
 
+    //reset counter if array is empty
+    if(divIdArr.length == 0){
+        counter = 1;
+    }
 
-    //increment counter
-    counter++;
+    //generate id for div 
+    let divID = 'apDiv' + counter
 
     //create div to append
-    let divToAppend = $('<div class="appendedDiv red" ></div>');
+    let divToAppend = $('<div id="' + divID + '" class="appendedDiv red" ></div>');
+
+    divIdArr.push(divID);
+    
     //create p to append to div
     let pToAppend = $('<p></p>');
 
@@ -44,6 +54,9 @@ function appendDiv(){
     divToAppend.append(deleteBtn);
 
     $('#appendContainer').append(divToAppend);
+
+    //increment counter
+    counter++;
 }
 
 //function to toggle css styles
@@ -57,6 +70,27 @@ function changeStyle(){
 //function to remove generated div
 function removeParent(){
 
+    //reset generate click counter if all divs deleted
+    //get div id
+    let divId = $(this).parent().attr('id');
+    
+   //loop through array of id's
+   for( let divName of divIdArr ){
+       console.log('match');
+        if(divId == divName){
+            let indexOfDiv = divIdArr.indexOf(divId);
+            divIdArr.splice(indexOfDiv, 1);
+        }
+   }
+
+   //reset counter
+    if (divIdArr.length == 0) {
+        counter = 0;
+    }
+
+    console.log(divId);
+
+    //remove from DOM
     $(this).parent().remove();
 
 }
