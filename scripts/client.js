@@ -5,12 +5,15 @@ $(document).ready(readyNow);
 function readyNow(){
     $('#generateBtn').on('click', appendDiv);
 
-    $(document).on('click','.swapBtn',changeStyle);
+    $(document).on('click','.swapBtn', changeStyle);
+
+    $(document).on('click', '.deleteBtn', removeParent);
 }
 
 //variable to hold counter
 let counter = 0;
 
+//function to create div and append do DOM
 function appendDiv(){
     console.log('in appendDiv');
 
@@ -41,15 +44,19 @@ function appendDiv(){
     divToAppend.append(deleteBtn);
 
     $('#appendContainer').append(divToAppend);
-
 }
 
-
+//function to toggle css styles
 function changeStyle(){
     console.log('in changeStyle');
 
     //toggle red/yellow color classes 
     $(this).parent().toggleClass('red').toggleClass('yellow');
+}
 
+//function to remove generated div
+function removeParent(){
+
+    $(this).parent().remove();
 
 }
