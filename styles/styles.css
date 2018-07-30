@@ -1,3 +1,23 @@
 *{
     box-sizing: border-box;
 }
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    --red: #FE0600;
+    --yellow: #CBF500;
+}
+
+.red{
+    background-color: var(--red);
+    color: #fff;
+}
+
+.yellow{
+    background-color: var(--yellow);
+    color: #000;
+}
